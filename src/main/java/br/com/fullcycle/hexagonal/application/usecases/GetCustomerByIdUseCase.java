@@ -15,15 +15,14 @@ public class GetCustomerByIdUseCase extends UseCase<GetCustomerByIdUseCase.Input
 
     @Override
     public Optional<Output> execute(final Input input) {
-        var customer = customerService.findById(input.id);
-        return customer.map(value -> new Output(
-                value.getId(),
-                value.getCpf(),
-                value.getEmail(),
-                value.getName()
+        return customerService.findById(input.id).map(c -> new Output(
+                c.getId(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getName()
         ));
     }
 
-    public record Input(Long id){}
-    public record Output(Long id, String cpf, String email, String name){}
+    public record Input(Long id) {}
+    public record Output(Long id, String cpf, String email, String name) {}
 }

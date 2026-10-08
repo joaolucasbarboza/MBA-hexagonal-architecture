@@ -3,13 +3,13 @@ package br.com.fullcycle.hexagonal.application.usecases;
 import br.com.fullcycle.hexagonal.application.exceptions.ValidationException;
 import br.com.fullcycle.hexagonal.models.Customer;
 import br.com.fullcycle.hexagonal.services.CustomerService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 public class CreateCustomerUseCaseTest {
@@ -40,10 +40,10 @@ public class CreateCustomerUseCaseTest {
         final CreateCustomerUseCase.Output output = useCase.execute(createInput);
 
         // then
-        Assertions.assertNotNull(output.id());
-        Assertions.assertEquals(expectedCPF, output.cpf());
-        Assertions.assertEquals(expectedEmail, output.email());
-        Assertions.assertEquals(expectedName, output.name());
+        assertNotNull(output.id());
+        assertEquals(expectedCPF, output.cpf());
+        assertEquals(expectedEmail, output.email());
+        assertEquals(expectedName, output.name());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class CreateCustomerUseCaseTest {
         final CreateCustomerUseCase useCase = new CreateCustomerUseCase(customerService);
 
         // then
-        Assertions.assertThrows(ValidationException.class, () -> useCase.execute(createInput));
+        assertThrows(ValidationException.class, () -> useCase.execute(createInput));
     }
 
     @Test
@@ -97,6 +97,6 @@ public class CreateCustomerUseCaseTest {
         final CreateCustomerUseCase useCase = new CreateCustomerUseCase(customerService);
 
         // then
-        Assertions.assertThrows(ValidationException.class, () -> useCase.execute(createInput));
+        assertThrows(ValidationException.class, () -> useCase.execute(createInput));
     }
 }
