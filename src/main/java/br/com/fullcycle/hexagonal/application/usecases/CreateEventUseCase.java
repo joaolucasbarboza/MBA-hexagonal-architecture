@@ -34,7 +34,7 @@ public class CreateEventUseCase extends UseCase<CreateEventUseCase.Input, Create
         event = eventService.save(event);
 
         return new Output(
-                event.getId(), input.date, event.getName(), event.getTotalSpots(), event.getPartner().getId());
+                event.getId(), input.date, event.getName(), event.getTotalSpots(), input.partnerId);
     }
 
     public record Input(String date, String name, Long partnerId, Integer totalSpots){}
